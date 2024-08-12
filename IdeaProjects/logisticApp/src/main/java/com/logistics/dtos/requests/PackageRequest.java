@@ -13,5 +13,6 @@ public class PackageRequest {
     private String packageName;
     private String receiverName;
     private String receiverPhone;
-    private Location deliveryLocation;
+    private String deliveryLocation;
+
 }

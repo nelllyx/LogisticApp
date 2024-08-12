@@ -1,6 +1,7 @@
 package com.logistics.services;
 
 import com.logistics.dtos.requests.PackageRequest;
+import com.logistics.dtos.requests.PayStackPaymentRequest;
 import com.logistics.dtos.requests.RegisterUserRequest;
 import com.logistics.dtos.response.PackageResponse;
 import com.logistics.dtos.response.RegisterUserResponse;
@@ -13,5 +14,6 @@ public interface CustomerService {
 
     RegisterUserResponse registerUser(RegisterUserRequest registerUserRequest);
     PackageResponse sendPackage(PackageRequest packageRequest);
+    void savePayment(PayStackPaymentRequest paymentRequest);
     void deleteAll();
 }

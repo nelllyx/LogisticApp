@@ -2,6 +2,7 @@ package com.logistics.data.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
@@ -18,7 +19,8 @@ public class User {
    private String address;
    private String firstname;
    private String lastname;
-
+   private  Location location;
    private UserRole role;
+
 
 }

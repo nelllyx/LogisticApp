@@ -116,7 +116,7 @@ class CustomerServiceTest {
         parcel.setPickUpAddress("unit 9, jordan brookes estate osapa");
         parcel.setDeliveryAddress("mushin olosha");
         parcel.setReceiverPhone("090624440001");
-        parcel.setDeliveryLocation(MAINLAND);
+        parcel.setDeliveryLocation("MAINLAND");
        PackageResponse response =  customerService.sendPackage(parcel);
         assertThat(response.getMessage() ).containsIgnoringCase("Your package has been registered and would be valid once you make payment");
         assertThat(response).isNotNull();

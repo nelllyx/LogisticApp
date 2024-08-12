@@ -1,15 +1,18 @@
 package com.logistics.data.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Getter
+import java.math.BigDecimal;
 @Setter
+@Getter
 @Document("payment")
-
-public class Payment {
-    private String id;
+public class PayStackPayment {
+    private  String id;
+    private String senderUsername;
     private String dispatchId;
-    private boolean hasPaid;
+    private double amount;
+    private String trackingNumber;
 }

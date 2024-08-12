@@ -5,9 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-
-public class PackageResponse {
-
+public class PaymentResponse {
     private String message;
-
 }

@@ -15,7 +15,6 @@ public class ClientPackage {
         parcel.setDeliveryAddress(senderPackage.getDeliveryAddress());
         parcel.setReceiverName(senderPackage.getReceiverName());
         parcel.setReceiverPhone(senderPackage.getReceiverPhone());
-
         return parcel;
     }
 }

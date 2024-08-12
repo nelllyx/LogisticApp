@@ -7,5 +7,6 @@ public interface AdminService {
 
     RegisterUserResponse adminSignup(RegisterUserRequest registerUserRequest);
 
+
     void deleteAll();
 }
