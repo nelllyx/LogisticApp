@@ -16,5 +16,7 @@ public class PayStackConfig {
    @Value("${paystack.url}")
 
     private  String payStackURL;
+   @Value("${paystack.verify_url}")
+    private  String verifyUrl;
 
 }

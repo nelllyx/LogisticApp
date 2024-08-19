@@ -4,6 +4,7 @@ package com.logistics.data.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 @Getter
 @Document("rider-pickup")
 
-public class RiderPickUp {
+public class
+RiderPickUp {
     @Id
     private String Id;
     private String vehicleInfo;
@@ -20,5 +22,6 @@ public class RiderPickUp {
     private String riderLastName;
     private  boolean isAvailable;
     private boolean rideStatus;
+    @DBRef
     private List<Dispatch> packageInfo;
 }

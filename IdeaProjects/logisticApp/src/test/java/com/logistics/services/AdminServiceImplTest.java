@@ -1,9 +1,14 @@
 package com.logistics.services;
 
+import com.logistics.data.model.Dispatch;
+import com.logistics.data.model.User;
 import com.logistics.dtos.requests.LoginRequest;
+import com.logistics.dtos.requests.PackageRequest;
 import com.logistics.dtos.requests.RegisterUserRequest;
 import com.logistics.dtos.response.LoginResponse;
+import com.logistics.dtos.response.PackageResponse;
 import com.logistics.dtos.response.RegisterUserResponse;
+import com.logistics.exception.DispatchNotFoundException;
 import com.logistics.exception.LogisticAppException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +26,8 @@ class AdminServiceImplTest {
     private AdminService admin;
     @Autowired
     private  AuthenticationService correct;
+    @Autowired
+    private CustomerServiceImpl service;
     @BeforeEach
     public void setUp(){
         admin.deleteAll();
@@ -84,6 +91,62 @@ class AdminServiceImplTest {
        assertThat(response.getMessage() ).containsIgnoringCase("login successful");
     }
 
+    @Test void test_That_Dispatch_Exist() throws DispatchNotFoundException {
+
+        RegisterUserRequest firstUser = new RegisterUserRequest();
+        firstUser.setFirstName("Kent");
+        firstUser.setLastName("Okoro");
+        firstUser.setAddress("unit 9, jordan brookes estate osapa");
+        firstUser.setEmail("kentOkoro75@gmail.com");
+        firstUser.setPhoneNumber("08114340839");
+        firstUser.setUserName("biggie");
+        firstUser.setPassword("1234");
+        service.registerUser(firstUser);
+
+
+        PackageRequest parcel = new PackageRequest();
+        parcel.setSenderUsername(firstUser.getUserName());
+        parcel.setPackageName("Iphone");
+        parcel.setReceiverName("Ayodeji");
+        parcel.setPickUpAddress("unit 9, jordan brookes estate osapa");
+        parcel.setDeliveryAddress(" olosha");
+        parcel.setReceiverPhone("090624440001");
+        parcel.setDeliveryLocation("MAINLAND");
+       PackageResponse reply = service.sendPackage(parcel);
+
+        Dispatch dispatch = admin.findDispatchById(reply.getDispatchID());
+        String name = dispatch.getSenderUsername();
+        String address = dispatch.getDeliveryAddress();
+        System.out.println(dispatch);
+        System.out.println(name);
+        System.out.println(address);
+
+
+    }
+
+    @Test void testThatAdminCanConfirmPayment(){
+        RegisterUserRequest firstUser = new RegisterUserRequest();
+        firstUser.setFirstName("Kent");
+        firstUser.setLastName("Okoro");
+        firstUser.setAddress("unit 9, jordan brookes estate osapa");
+        firstUser.setEmail("kentOkoro75@gmail.com");
+        firstUser.setPhoneNumber("08114340839");
+        firstUser.setUserName("biggie");
+        firstUser.setPassword("1234");
+        service.registerUser(firstUser);
+
+
+        PackageRequest parcel = new PackageRequest();
+        parcel.setSenderUsername(firstUser.getUserName());
+        parcel.setPackageName("Iphone");
+        parcel.setReceiverName("Ayodeji");
+        parcel.setPickUpAddress("unit 9, jordan brookes estate osapa");
+        parcel.setDeliveryAddress(" olosha");
+        parcel.setReceiverPhone("090624440001");
+        parcel.setDeliveryLocation("MAINLAND");
+        service.sendPackage(parcel);
+
+    }
 
 
 }

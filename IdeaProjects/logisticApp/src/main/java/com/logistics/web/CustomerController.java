@@ -46,7 +46,7 @@ public class CustomerController {
             LoginResponse response = customerLogin.authenticationLogin(loginCustomerRequest);
             return new ResponseEntity<>(new ApiResponse(true,response),OK);
         }catch(Exception message){
-            return new ResponseEntity<>(new ApiResponse(false,message),BAD_REQUEST);
+            return ResponseEntity.badRequest().body(message.getMessage());
         }
     }
 
@@ -65,6 +65,7 @@ public class CustomerController {
     public ResponseEntity<?> userPayment(@RequestBody PayStackPaymentRequest paymentRequest){
         try {
             paymentRequest.setAmount(paymentRequest.getAmount()*100);
+
             PayStackPaymentResponse response = payment.initializePayment(paymentRequest);
             return  new ResponseEntity<>(new ApiResponse(true,response),OK);
         }catch (Exception message){

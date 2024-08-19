@@ -44,7 +44,7 @@ public class RiderController {
             LoginResponse response = riderLogin.authenticationLogin(loginRiderRequest);
             return new ResponseEntity<>(new ApiResponse(true,response),OK);
         }catch(Exception message){
-            return new ResponseEntity<>(new ApiResponse(false,message),BAD_REQUEST);
+            return ResponseEntity.badRequest().body(message.getMessage());
         }
     }
 

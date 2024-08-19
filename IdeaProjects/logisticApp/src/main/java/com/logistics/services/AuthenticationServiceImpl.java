@@ -18,6 +18,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private  UserRepository login;
+    private  CustomerService customerService;
 
 
     @Override
@@ -32,10 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
          return response;
     }
     public LoginResponse authenticationLogin(LoginRequest userLogin) {
-        User user = login.findByUsername(userLogin.getUsername());
-        if(user == null){
-            throw new LogisticAppException("Username does not exist");
-        }
+        User user = customerService.verifyUser(userLogin.getUsername());
         if(!user.getPassword().equals(userLogin.getPassword()))throw new LogisticAppException("Wrong Credentials");
         return new LoginResponse("Login Successful");
     }

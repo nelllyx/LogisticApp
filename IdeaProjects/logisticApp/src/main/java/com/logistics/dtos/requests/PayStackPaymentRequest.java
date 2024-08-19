@@ -12,4 +12,5 @@ public class PayStackPaymentRequest {
     private String email;
     private String senderUsername;
     private String dispatchId;
+    private String status;
 }

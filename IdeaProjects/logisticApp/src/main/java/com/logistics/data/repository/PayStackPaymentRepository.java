@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PayStackPaymentRepository extends MongoRepository<PayStackPayment, String> {
-
+        PayStackPayment findPayStackPaymentBySenderUsername(String username);
 }
